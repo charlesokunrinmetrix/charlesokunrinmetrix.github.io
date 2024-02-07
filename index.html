@@ -12,7 +12,7 @@
     <script>
       // Function to fetch blockchain data
       function getBlockchainData() {
-        fetch("https://blockchain.info/latestblock")
+        fetch("http://127.0.0.1:8000/blockchain")
           .then((response) => response.json())
           .then((data) => {
             // Update the content of the div with the fetched data
