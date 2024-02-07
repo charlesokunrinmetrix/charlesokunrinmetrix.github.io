@@ -1,7 +1,37 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Blockchain Data</title>
+  </head>
   <body>
-    <h1>Hello World</h1>
-    <p>I'm hosted with GitHub Pages.</p>
+    <h1>Blockchain Data</h1>
+    <div id="blockchain-data"></div>
+
+    <script>
+      // Function to fetch blockchain data
+      function getBlockchainData() {
+        fetch("https://blockchain.info/latestblock")
+          .then((response) => response.json())
+          .then((data) => {
+            // Update the content of the div with the fetched data
+            document.getElementById("blockchain-data").innerHTML = `
+                        <p>Latest Block Height: ${data.height}</p>
+                        <p>Latest Block Hash: ${data.hash}</p>
+                        <p>Latest Block Time (Unix Timestamp): ${data.time}</p>
+                    `;
+          })
+          .catch((error) => {
+            console.error("Failed to fetch blockchain data:", error);
+            // Display an error message if data fetching fails
+            document.getElementById("blockchain-data").innerHTML =
+              "<p>Failed to fetch blockchain data.</p>";
+          });
+      }
+
+      // Call the function when the page is loaded
+      window.onload = getBlockchainData;
+    </script>
   </body>
 </html>
